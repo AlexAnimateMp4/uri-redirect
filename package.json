@@ -1,0 +1,65 @@
+{
+    "name": "uri-redirect",
+    "display_name": "Uri Redirect",
+    "version": "1.0.0",
+    "description": "Redirection to a URI link.",
+    "keywords": [
+        "nodejs",
+        "javascript",
+        "js",
+        "uri",
+        "redirect",
+        "uri-scheme"
+    ],
+    "homepage": "https://uri-redirect.herokuapp.com",
+    "bugs": {},
+    "license": "MPL-2.0",
+    "author": {
+        "name": "Alex Animate Mp4",
+        "bio": "A French Javascript developer who is in love with Lara Croft🥰",
+        "location": "France",
+        "birthday": "30/09",
+        "email": "alexanimatemp4pro@gmail.com",
+        "url": "https://alexanimatemp4.herokuapp.com",
+        "social_networks": {
+            "github": "https://github.com/AlexAnimateMP4",
+            "discord": "Alex Animate Mp4#2361",
+            "tiktok": "https://tiktok.com/@alexanimatemp4",
+            "twitter": "https://twitter.com/AlexAnimateMp4",
+            "instagram": "https://instagram.com/alexanimatemp4",
+            "gravatar": "https://gravatar.com/alexanimatemp4",
+            "twitch": "https://twitch.tv/alexanimatemp4",
+            "steam": "https://steamcommunity.com/id/AlexAnimateMp4",
+            "battle_net": "AlexAnimate#2465",
+            "xbox_live": "Alex Animate374",
+            "youtube": "https://youtube.com/channel/UCU9dR_U-HZi-XAGCl_HV9_A",
+            "spotify": "https://open.spotify.com/user/1xyn4zl6nl98g44elp12hx5ta",
+            "reddit": "https://reddit.com/user/AlexAnimateMp4",
+            "imgur": "https://imgur.com/user/AlexAnimateMP4",
+            "paste_gg": "https://paste.gg/u/Alex%20Animate%20Mp4"
+        }
+    },
+    "files": [
+        "assets",
+        ".env.example",
+        ".gitignore",
+        "CHANGELOG.md",
+        "index.js",
+        "LICENSE",
+        "package.json",
+        "README.md"
+    ],
+    "main": "index.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "repository": {},
+    "scripts": {
+        "start": "node --trace-warnings --trace-uncaught index.js"
+    },
+    "private": "true",
+    "dependencies": {
+        "fastify": "^3.19.2",
+        "portfinder": "^1.0.28"
+    }
+}
