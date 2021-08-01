@@ -14,9 +14,11 @@ const package = require(path.join(__dirname, `package.json`));
             port: typeof parseFloat(process.env.PORT) == `number` && !isNaN(parseFloat(process.env.PORT)) ? process.env.PORT : 3000
         }, async (error, port) => {
             if (error) return reject(error);
-            else if (!error) return await app.listen({
+            else if (!error) return await app.listen(typeof process.env.HOST == `string` && String(process.env.HOST).length > 0 ? {
                 port: port,
-                host: typeof process.env.HOST == `string` && String(process.env.HOST).length > 0 ? process.env.HOST : `127.0.0.1`
+                host: process.env.HOST
+            } : {
+                port: port
             }, async (error, address) => {
                 if (error) return reject(await error);
                 else if (!error) return resolve(console.log(`${await package.display_name} is now listening on ${await address}`));

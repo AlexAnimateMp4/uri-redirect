@@ -12,7 +12,9 @@
         "uri-scheme"
     ],
     "homepage": "https://uri-redirect.herokuapp.com",
-    "bugs": {},
+    "bugs": {
+        "url": "https://github.com/AlexAnimateMP4/uri-redirect/issues"
+    },
     "license": "MPL-2.0",
     "author": {
         "name": "Alex Animate Mp4",
@@ -50,14 +52,14 @@
         "README.md"
     ],
     "main": "index.js",
-    "directories": {
-        "doc": "docs"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AlexAnimateMP4/uri-redirect.git"
     },
-    "repository": {},
     "scripts": {
         "start": "node --trace-warnings --trace-uncaught index.js"
     },
-    "private": "true",
+    "private": "false",
     "dependencies": {
         "fastify": "^3.19.2",
         "portfinder": "^1.0.28"
