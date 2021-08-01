@@ -42,7 +42,6 @@
         }
     },
     "files": [
-        "assets",
         ".env.example",
         ".gitignore",
         "CHANGELOG.md",
