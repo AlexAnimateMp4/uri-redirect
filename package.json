@@ -1,6 +1,6 @@
 {
     "name": "uri-redirect",
-    "display_name": "Uri Redirect",
+    "display_name": "URI Redirect",
     "version": "1.0.0",
     "description": "Redirection to a URI link.",
     "keywords": [
