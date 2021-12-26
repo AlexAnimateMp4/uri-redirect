@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <script>
+        const translations = {
+            EN: {
+                LANGUAGE: `English`,
+                TITLE: `URI Redirect`,
+                DESCRIPTION: `Redirection to a URI link.`,
+                DESCRIPTION_REDIRECTION_LOADING: `Redirection to #URI_REDIRECT#`,
+                REDIRECTION_LOADING: `Redirection in progress to #URI_REDIRECT#`,
+                LABEL_LANGUAGE: `Language`,
+                LABEL_METHOD: `Method`,
+                LABEL_ARGS: `Arguments`,
+                LABEL_NO_LOADING: `No loading page`,
+                REDIRECT: `Redirect`,
+                CREDITS: `CL #DATE# #CREDITS_PROJECT#<br>&lt;/&gt; with ❤ by #CREDITS_AUTHOR# and #CREDITS_CONTRIBUTORS#.`,
+                CREDITS_PROJECT: `URI Redirect`,
+                CREDITS_AUTHOR: `Alex Animate Mp4`,
+                CREDITS_CONTRIBUTORS: `contributors`
+            },
+            FR: {
+                LANGUAGE: `Français`,
+                TITLE: `URI Redirect`,
+                DESCRIPTION: `Redirection vers un lien URI.`,
+                DESCRIPTION_REDIRECTION_LOADING: `Redirection vers #URI_REDIRECT#`,
+                REDIRECTION_LOADING: `Redirection en cours vers #URI_REDIRECT#`,
+                LABEL_LANGUAGE: `Langue`,
+                LABEL_METHOD: `Méthode`,
+                LABEL_ARGS: `Arguments`,
+                LABEL_NO_LOADING: `Pas de page de chargement`,
+                REDIRECT: `Redirection`,
+                CREDITS: `CL #DATE# #CREDITS_PROJECT#<br>&lt;/&gt; avec ❤ par #CREDITS_AUTHOR# et les #CREDITS_CONTRIBUTORS#.`,
+                CREDITS_PROJECT: `URI Redirect`,
+                CREDITS_AUTHOR: `Alex Animate Mp4`,
+                CREDITS_CONTRIBUTORS: `contributeurs`
+            }
+        };
+        const params = new URLSearchParams(window.location.search);
+        if (params.has(`theme_color`) == false || typeof params.get(`theme_color`) != `string` || String(params.get(`theme_color`)).length < 1) params.set(`theme_color`, `#00FF66`);
+        if (params.has(`no_loading`) == false || typeof params.get(`no_loading`) != `string` || String(params.get(`no_loading`)).length < 1) params.set(`no_loading`, `false`);
+        if (params.has(`lang`) == false || typeof params.get(`lang`) != `string` || String(params.get(`lang`)).length < 1) params.set(`lang`, `EN`);
+        if (Object.keys(translations).indexOf(params.get(`lang`).toUpperCase()) != -1) params.set(`lang`, params.get(`lang`).toUpperCase());
+        else params.set(`lang`, `EN`);
+        if (params.has(`method`) == true && params.has(`args`) == true) {
+            if (typeof params.get(`method`) != `string` || String(params.get(`method`)).length < 1 || typeof params.get(`args`) != `string` || String(params.get(`args`)).length < 1) {
+                params.delete(`method`);
+                params.delete(`args`);
+                window.location.search = params.toString();
+            } else if (params.get(`no_loading`).toLowerCase() == `true`) window.location.href = `${params.get(`method`)}://${params.get(`args`)}`;
+            else {
+                const meta_charset = document.createElement(`meta`);
+                meta_charset.setAttribute(`id`, `meta_charset`);
+                meta_charset.setAttribute(`charset`, `utf-8`);
+                document.head.appendChild(meta_charset);
+                const meta_content_type = document.createElement(`meta`);
+                meta_content_type.setAttribute(`id`, `meta_content_type`);
+                meta_content_type.setAttribute(`http-equiv`, `Content-Type`);
+                meta_content_type.setAttribute(`content`, `text/html; charset=UTF-8`);
+                document.head.appendChild(meta_content_type);
+                const meta_xua_compatible = document.createElement(`meta`);
+                meta_xua_compatible.setAttribute(`id`, `meta_xua_compatible`);
+                meta_xua_compatible.setAttribute(`http-equiv`, `X-UA-Compatible`);
+                meta_xua_compatible.setAttribute(`content`, `IE=edge, chrome=1`);
+                document.head.appendChild(meta_xua_compatible);
+                const meta_viewport = document.createElement(`meta`);
+                meta_viewport.setAttribute(`id`, `meta_viewport`);
+                meta_viewport.setAttribute(`name`, `viewport`);
+                meta_viewport.setAttribute(`content`, `width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no`);
+                document.head.appendChild(meta_viewport);
+                const title = document.createElement(`title`);
+                title.setAttribute(`id`, `title`);
+                title.innerText = translations[params.get(`lang`)].TITLE;
+                document.head.appendChild(title);
+                const meta_description = document.createElement(`meta`);
+                meta_description.setAttribute(`id`, `meta_description`);
+                meta_description.setAttribute(`name`, `description`);
+                meta_description.setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION_REDIRECTION_LOADING.replace(`#URI_REDIRECT#`, `${params.get(`method`)}://${params.get(`args`)}`));
+                document.head.appendChild(meta_description);
+                const meta_keywords = document.createElement(`meta`);
+                meta_keywords.setAttribute(`id`, `meta_keywords`);
+                meta_keywords.setAttribute(`name`, `keywords`);
+                meta_keywords.setAttribute(`content`, `nodejs, javascript, js, uri, redirect, uri-scheme`);
+                document.head.appendChild(meta_keywords);
+                const meta_og_type = document.createElement(`meta`);
+                meta_og_type.setAttribute(`id`, `meta_og_type`);
+                meta_og_type.setAttribute(`property`, `og:type`);
+                meta_og_type.setAttribute(`content`, `website`);
+                document.head.appendChild(meta_og_type);
+                const meta_og_title = document.createElement(`meta`);
+                meta_og_title.setAttribute(`id`, `meta_og_title`);
+                meta_og_title.setAttribute(`property`, `og:title`);
+                meta_og_title.setAttribute(`content`, translations[params.get(`lang`)].TITLE);
+                document.head.appendChild(meta_og_title);
+                const meta_og_description = document.createElement(`meta`);
+                meta_og_description.setAttribute(`id`, `meta_og_description`);
+                meta_og_description.setAttribute(`property`, `og:description`);
+                meta_og_description.setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION_REDIRECTION_LOADING.replace(`#URI_REDIRECT#`, `${params.get(`method`)}://${params.get(`args`)}`));
+                document.head.appendChild(meta_og_description);
+                const meta_og_image = document.createElement(`meta`);
+                meta_og_image.setAttribute(`id`, `meta_og_image`);
+                meta_og_image.setAttribute(`property`, `og:image`);
+                meta_og_image.setAttribute(`content`, ``);
+                document.head.appendChild(meta_og_image);
+                const meta_twitter_card = document.createElement(`meta`);
+                meta_twitter_card.setAttribute(`id`, `meta_twitter_card`);
+                meta_twitter_card.setAttribute(`name`, `twitter:card`);
+                meta_twitter_card.setAttribute(`content`, `summary`);
+                document.head.appendChild(meta_twitter_card);
+                const meta_twitter_title = document.createElement(`meta`);
+                meta_twitter_title.setAttribute(`id`, `meta_twitter_title`);
+                meta_twitter_title.setAttribute(`name`, `twitter:title`);
+                meta_twitter_title.setAttribute(`content`, translations[params.get(`lang`)].TITLE);
+                document.head.appendChild(meta_twitter_title);
+                const meta_twitter_description = document.createElement(`meta`);
+                meta_twitter_description.setAttribute(`id`, `meta_twitter_description`);
+                meta_twitter_description.setAttribute(`name`, `twitter:description`);
+                meta_twitter_description.setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION_REDIRECTION_LOADING.replace(`#URI_REDIRECT#`, `${params.get(`method`)}://${params.get(`args`)}`));
+                document.head.appendChild(meta_twitter_description);
+                const meta_twitter_image = document.createElement(`meta`);
+                meta_twitter_image.setAttribute(`id`, `meta_twitter_image`);
+                meta_twitter_image.setAttribute(`name`, `twitter:image`);
+                meta_twitter_image.setAttribute(`content`, ``);
+                document.head.appendChild(meta_twitter_image);
+                const meta_theme_color = document.createElement(`meta`);
+                meta_theme_color.setAttribute(`id`, `meta_theme_color`);
+                meta_theme_color.setAttribute(`property`, `theme-color`);
+                meta_theme_color.setAttribute(`content`, params.get(`theme_color`));
+                document.head.appendChild(meta_theme_color);
+                const redirection_loading = document.createElement(`p`);
+                redirection_loading.setAttribute(`id`, `redirection_loading`);
+                redirection_loading.innerText = translations[params.get(`lang`)].REDIRECTION_LOADING.replace(`#URI_REDIRECT#`, `${params.get(`method`)}://${params.get(`args`)}`);
+                document.body.appendChild(redirection_loading);
+                window.location.href = `${params.get(`method`)}://${params.get(`args`)}`;
+            };
+        } else {
+            const meta_charset = document.createElement(`meta`);
+            meta_charset.setAttribute(`id`, `meta_charset`);
+            meta_charset.setAttribute(`charset`, `utf-8`);
+            document.head.appendChild(meta_charset);
+            const meta_content_type = document.createElement(`meta`);
+            meta_content_type.setAttribute(`id`, `meta_content_type`);
+            meta_content_type.setAttribute(`http-equiv`, `Content-Type`);
+            meta_content_type.setAttribute(`content`, `text/html; charset=UTF-8`);
+            document.head.appendChild(meta_content_type);
+            const meta_xua_compatible = document.createElement(`meta`);
+            meta_xua_compatible.setAttribute(`id`, `meta_xua_compatible`);
+            meta_xua_compatible.setAttribute(`http-equiv`, `X-UA-Compatible`);
+            meta_xua_compatible.setAttribute(`content`, `IE=edge, chrome=1`);
+            document.head.appendChild(meta_xua_compatible);
+            const meta_viewport = document.createElement(`meta`);
+            meta_viewport.setAttribute(`id`, `meta_viewport`);
+            meta_viewport.setAttribute(`name`, `viewport`);
+            meta_viewport.setAttribute(`content`, `width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no`);
+            document.head.appendChild(meta_viewport);
+            const title = document.createElement(`title`);
+            title.setAttribute(`id`, `title`);
+            title.innerText = translations[params.get(`lang`)].TITLE;
+            document.head.appendChild(title);
+            const meta_description = document.createElement(`meta`);
+            meta_description.setAttribute(`id`, `meta_description`);
+            meta_description.setAttribute(`name`, `description`);
+            meta_description.setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION);
+            document.head.appendChild(meta_description);
+            const meta_keywords = document.createElement(`meta`);
+            meta_keywords.setAttribute(`id`, `meta_keywords`);
+            meta_keywords.setAttribute(`name`, `keywords`);
+            meta_keywords.setAttribute(`content`, `nodejs, javascript, js, uri, redirect, uri-scheme`);
+            document.head.appendChild(meta_keywords);
+            const meta_og_type = document.createElement(`meta`);
+            meta_og_type.setAttribute(`id`, `meta_og_type`);
+            meta_og_type.setAttribute(`property`, `og:type`);
+            meta_og_type.setAttribute(`content`, `website`);
+            document.head.appendChild(meta_og_type);
+            const meta_og_title = document.createElement(`meta`);
+            meta_og_title.setAttribute(`id`, `meta_og_title`);
+            meta_og_title.setAttribute(`property`, `og:title`);
+            meta_og_title.setAttribute(`content`, translations[params.get(`lang`)].TITLE);
+            document.head.appendChild(meta_og_title);
+            const meta_og_description = document.createElement(`meta`);
+            meta_og_description.setAttribute(`id`, `meta_og_description`);
+            meta_og_description.setAttribute(`property`, `og:description`);
+            meta_og_description.setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION);
+            document.head.appendChild(meta_og_description);
+            const meta_og_image = document.createElement(`meta`);
+            meta_og_image.setAttribute(`id`, `meta_og_image`);
+            meta_og_image.setAttribute(`property`, `og:image`);
+            meta_og_image.setAttribute(`content`, ``);
+            document.head.appendChild(meta_og_image);
+            const meta_twitter_card = document.createElement(`meta`);
+            meta_twitter_card.setAttribute(`id`, `meta_twitter_card`);
+            meta_twitter_card.setAttribute(`name`, `twitter:card`);
+            meta_twitter_card.setAttribute(`content`, `summary`);
+            document.head.appendChild(meta_twitter_card);
+            const meta_twitter_title = document.createElement(`meta`);
+            meta_twitter_title.setAttribute(`id`, `meta_twitter_title`);
+            meta_twitter_title.setAttribute(`name`, `twitter:title`);
+            meta_twitter_title.setAttribute(`content`, translations[params.get(`lang`)].TITLE);
+            document.head.appendChild(meta_twitter_title);
+            const meta_twitter_description = document.createElement(`meta`);
+            meta_twitter_description.setAttribute(`id`, `meta_twitter_description`);
+            meta_twitter_description.setAttribute(`name`, `twitter:description`);
+            meta_twitter_description.setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION);
+            document.head.appendChild(meta_twitter_description);
+            const meta_twitter_image = document.createElement(`meta`);
+            meta_twitter_image.setAttribute(`id`, `meta_twitter_image`);
+            meta_twitter_image.setAttribute(`name`, `twitter:image`);
+            meta_twitter_image.setAttribute(`content`, ``);
+            document.head.appendChild(meta_twitter_image);
+            const meta_theme_color = document.createElement(`meta`);
+            meta_theme_color.setAttribute(`id`, `meta_theme_color`);
+            meta_theme_color.setAttribute(`property`, `theme-color`);
+            meta_theme_color.setAttribute(`content`, params.get(`theme_color`));
+            document.head.appendChild(meta_theme_color);
+            const label_language = document.createElement(`label`);
+            label_language.setAttribute(`id`, `label_language`);
+            label_language.setAttribute(`for`, `language`);
+            label_language.innerText = translations[params.get(`lang`)].LABEL_LANGUAGE + `: `;
+            label_language.setAttribute(`style`, `-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;`);
+            document.body.appendChild(label_language);
+            const select = document.createElement(`select`);
+            select.setAttribute(`id`, `select`);
+            select.setAttribute(`name`, `language`);
+            Object.entries(translations).map(([key, value]) => {
+                const option = document.createElement(`option`);
+                option.setAttribute(`id`, `option_${key}`);
+                option.setAttribute(`value`, key);
+                option.innerText = value.LANGUAGE;
+                if (key == params.get(`lang`)) option.selected = true;
+                select.appendChild(option);
+            });
+            select.setAttribute(`style`, `margin-bottom: 7.5px;`);
+            document.body.appendChild(select);
+            const form = document.createElement(`form`);
+            form.setAttribute(`id`, `form`);
+            const label_method = document.createElement(`label`);
+            label_method.setAttribute(`id`, `label_method`);
+            label_method.setAttribute(`for`, `method`);
+            label_method.innerText = translations[params.get(`lang`)].LABEL_METHOD + `: `;
+            label_method.setAttribute(`style`, `-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;`);
+            form.appendChild(label_method);
+            const input_method = document.createElement(`input`);
+            input_method.setAttribute(`id`, `input_method`);
+            input_method.setAttribute(`name`, `method`);
+            input_method.setAttribute(`type`, `text`);
+            input_method.setAttribute(`required`, ``);
+            input_method.setAttribute(`style`, `margin-bottom: 5px;`);
+            form.appendChild(input_method);
+            const input_method_space = document.createElement(`br`);
+            input_method_space.setAttribute(`style`, `-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;`);
+            form.appendChild(input_method_space);
+            const label_args = document.createElement(`label`);
+            label_args.setAttribute(`id`, `label_args`);
+            label_args.setAttribute(`for`, `args`);
+            label_args.innerText = translations[params.get(`lang`)].LABEL_ARGS + `: `;
+            label_args.setAttribute(`style`, `-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;`);
+            form.appendChild(label_args);
+            const input_args = document.createElement(`input`);
+            input_args.setAttribute(`id`, `input_args`);
+            input_args.setAttribute(`name`, `args`);
+            input_args.setAttribute(`type`, `text`);
+            input_args.setAttribute(`required`, ``);
+            input_args.setAttribute(`style`, `margin-bottom: 5px;`);
+            form.appendChild(input_args);
+            const input_args_space = document.createElement(`br`);
+            input_args_space.setAttribute(`style`, `-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;`);
+            form.appendChild(input_args_space);
+            const input_no_loading = document.createElement(`input`);
+            input_no_loading.setAttribute(`id`, `input_no_loading`);
+            input_no_loading.setAttribute(`name`, `no_loading`);
+            input_no_loading.setAttribute(`type`, `checkbox`);
+            input_no_loading.setAttribute(`style`, `margin-left: 0;margin-bottom: 10px;margin-right: 7.5px;`);
+            params.get(`no_loading`).toLowerCase() == `true` ? input_no_loading.setAttribute(`checked`, ``) : input_no_loading.setAttribute(`unchecked`, ``);
+            form.appendChild(input_no_loading);
+            const label_no_loading = document.createElement(`label`);
+            label_no_loading.setAttribute(`id`, `label_no_loading`);
+            label_no_loading.setAttribute(`for`, `args`);
+            label_no_loading.innerText = translations[params.get(`lang`)].LABEL_NO_LOADING;
+            label_no_loading.setAttribute(`style`, `-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;`);
+            form.appendChild(label_no_loading);
+            const input_no_loading_space = document.createElement(`br`);
+            input_no_loading_space.setAttribute(`style`, `-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;`);
+            form.appendChild(input_no_loading_space);
+            const redirect = document.createElement(`input`);
+            redirect.setAttribute(`id`, `redirect`);
+            redirect.setAttribute(`type`, `submit`);
+            redirect.setAttribute(`value`, translations[params.get(`lang`)].REDIRECT);
+            redirect.setAttribute(`style`, `margin-bottom: 10px;`);
+            form.appendChild(redirect);
+            document.body.appendChild(form);
+            const uri_redirect = document.createElement(`p`);
+            uri_redirect.setAttribute(`id`, `uri_redirect`);
+            uri_redirect.setAttribute(`style`, `word-break: break-all;margin: 0;`);
+            uri_redirect.innerText = `${window.location.origin}${window.location.pathname}?lang=${params.get(`lang`)}${typeof document.getElementById(`input_method`).value == `string` && String(document.getElementById(`input_method`).value).length > 0 ? `&method=${document.getElementById(`input_method`).value}` : ``}${typeof document.getElementById(`input_args`).value == `string` && String(document.getElementById(`input_args`).value).length > 0 ? `&args=${document.getElementById(`input_args`).value}` : ``}&no_loading=${params.get(`no_loading`).toLowerCase()}`;
+            document.body.appendChild(uri_redirect);
+            const credits_copyleft = document.createElement(`p`);
+            credits_copyleft.setAttribute(`id`, `credits_copyleft`);
+            credits_copyleft.setAttribute(`style`, `word-break: break-all;`);
+            const credits_project = document.createElement(`a`);
+            credits_project.setAttribute(`id`, `credits_project`);
+            credits_project.setAttribute(`target`, `_blank`);
+            credits_project.setAttribute(`href`, `https://github.com/AlexAnimateMp4/uri-redirect`);
+            credits_project.setAttribute(`style`, `word-break: break-all;`);
+            credits_project.innerHTML = translations[params.get(`lang`)].CREDITS_PROJECT;
+            const credits_author = document.createElement(`a`);
+            credits_author.setAttribute(`id`, `credits_author`);
+            credits_author.setAttribute(`target`, `_blank`);
+            credits_author.setAttribute(`href`, `https://github.com/AlexAnimateMp4`);
+            credits_author.setAttribute(`style`, `word-break: break-all;`);
+            credits_author.innerHTML = translations[params.get(`lang`)].CREDITS_AUTHOR;
+            const credits_contributors = document.createElement(`a`);
+            credits_contributors.setAttribute(`id`, `credits_contributors`);
+            credits_contributors.setAttribute(`target`, `_blank`);
+            credits_contributors.setAttribute(`href`, `https://github.com/AlexAnimateMp4/uri-redirect/graphs/contributors`);
+            credits_contributors.setAttribute(`style`, `word-break: break-all;`);
+            credits_contributors.innerHTML = translations[params.get(`lang`)].CREDITS_CONTRIBUTORS;
+            credits_copyleft.innerHTML = translations[params.get(`lang`)].CREDITS.replace(`#DATE#`, new Date().getFullYear() == `2021` ? `2021` : `2021 - ${new Date().getFullYear()}`).replace(`#CREDITS_PROJECT#`, credits_project.outerHTML).replace(`#CREDITS_AUTHOR#`, credits_author.outerHTML).replace(`#CREDITS_CONTRIBUTORS#`, credits_contributors.outerHTML);
+            document.body.appendChild(credits_copyleft);
+            document.getElementById(`input_no_loading`).addEventListener(`change`, element => {
+                if (element.target.checked == true) params.set(`no_loading`, `true`);
+                else if (element.target.checked == false) params.set(`no_loading`, `false`);
+                uri_redirect.innerText = `${window.location.origin}${window.location.pathname}?lang=${params.get(`lang`)}${typeof document.getElementById(`input_method`).value == `string` && String(document.getElementById(`input_method`).value).length > 0 ? `&method=${document.getElementById(`input_method`).value}` : ``}${typeof document.getElementById(`input_args`).value == `string` && String(document.getElementById(`input_args`).value).length > 0 ? `&args=${document.getElementById(`input_args`).value}` : ``}&no_loading=${params.get(`no_loading`).toLowerCase()}`;
+            });
+            document.getElementById(`select`).addEventListener(`change`, element => {
+                params.set(`lang`, element.target.value);
+                document.getElementById(`title`).innerText = translations[params.get(`lang`)].TITLE;
+                document.getElementById(`meta_description`).setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION);
+                document.getElementById(`meta_og_title`).setAttribute(`content`, translations[params.get(`lang`)].TITLE);
+                document.getElementById(`meta_og_description`).setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION);
+                document.getElementById(`meta_twitter_title`).setAttribute(`content`, translations[params.get(`lang`)].TITLE);
+                document.getElementById(`meta_twitter_description`).setAttribute(`content`, translations[params.get(`lang`)].DESCRIPTION);
+                document.getElementById(`label_language`).innerText = translations[params.get(`lang`)].LABEL_LANGUAGE + `: `;
+                document.getElementById(`label_method`).innerText = translations[params.get(`lang`)].LABEL_METHOD + `: `;
+                document.getElementById(`label_args`).innerText = translations[params.get(`lang`)].LABEL_ARGS + `: `;
+                document.getElementById(`label_no_loading`).innerText = translations[params.get(`lang`)].LABEL_NO_LOADING;
+                document.getElementById(`redirect`).setAttribute(`value`, translations[params.get(`lang`)].REDIRECT);
+                document.getElementById(`uri_redirect`).innerText = `${window.location.origin}${window.location.pathname}?lang=${params.get(`lang`)}${typeof document.getElementById(`input_method`).value == `string` && String(document.getElementById(`input_method`).value).length > 0 ? `&method=${document.getElementById(`input_method`).value}` : ``}${typeof document.getElementById(`input_args`).value == `string` && String(document.getElementById(`input_args`).value).length > 0 ? `&args=${document.getElementById(`input_args`).value}` : ``}&no_loading=${params.get(`no_loading`).toLowerCase()}`;
+                document.getElementById(`credits_project`).innerHTML = translations[params.get(`lang`)].CREDITS_PROJECT;
+                document.getElementById(`credits_author`).innerHTML = translations[params.get(`lang`)].CREDITS_AUTHOR;
+                document.getElementById(`credits_contributors`).innerHTML = translations[params.get(`lang`)].CREDITS_CONTRIBUTORS;
+                document.getElementById(`credits_copyleft`).innerHTML = translations[params.get(`lang`)].CREDITS.replace(`#DATE#`, new Date().getFullYear() == `2021` ? `2021` : `2021 - ${new Date().getFullYear()}`).replace(`#CREDITS_PROJECT#`, document.getElementById(`credits_project`).outerHTML).replace(`#CREDITS_AUTHOR#`, document.getElementById(`credits_author`).outerHTML).replace(`#CREDITS_CONTRIBUTORS#`, document.getElementById(`credits_contributors`).outerHTML);
+            });
+            document.getElementById(`form`).addEventListener(`submit`, () => {
+                if (typeof document.getElementById(`input_method`).value == `string` && String(document.getElementById(`input_method`).value).length > 0 && typeof document.getElementById(`input_args`).value == `string` && String(document.getElementById(`input_args`).value).length > 0) params.get(`no_loading`).toLowerCase() == `true` ? window.location.href = `${document.getElementById(`input_method`).value}://${document.getElementById(`input_args`).value}` : window.location.href = `${window.location.origin}${window.location.pathname}?lang=${params.get(`lang`)}${typeof document.getElementById(`input_method`).value == `string` && String(document.getElementById(`input_method`).value).length > 0 ? `&method=${document.getElementById(`input_method`).value}` : ``}${typeof document.getElementById(`input_args`).value == `string` && String(document.getElementById(`input_args`).value).length > 0 ? `&args=${document.getElementById(`input_args`).value}` : ``}&no_loading=${params.get(`no_loading`).toLowerCase()}`;
+            });
+            document.getElementById(`input_method`).addEventListener(`keyup`, () => document.getElementById(`uri_redirect`).innerText = `${window.location.origin}${window.location.pathname}?lang=${params.get(`lang`)}${typeof document.getElementById(`input_method`).value == `string` && String(document.getElementById(`input_method`).value).length > 0 ? `&method=${document.getElementById(`input_method`).value}` : ``}${typeof document.getElementById(`input_args`).value == `string` && String(document.getElementById(`input_args`).value).length > 0 ? `&args=${document.getElementById(`input_args`).value}` : ``}&no_loading=${params.get(`no_loading`).toLowerCase()}`);
+            document.getElementById(`input_args`).addEventListener(`keyup`, () => document.getElementById(`uri_redirect`).innerText = `${window.location.origin}${window.location.pathname}?lang=${params.get(`lang`)}${typeof document.getElementById(`input_method`).value == `string` && String(document.getElementById(`input_method`).value).length > 0 ? `&method=${document.getElementById(`input_method`).value}` : ``}${typeof document.getElementById(`input_args`).value == `string` && String(document.getElementById(`input_args`).value).length > 0 ? `&args=${document.getElementById(`input_args`).value}` : ``}&no_loading=${params.get(`no_loading`).toLowerCase()}`);
+        };
+    </script>
+</body>
+
+</html>
